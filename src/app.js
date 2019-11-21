@@ -14,7 +14,7 @@ import 'react-dates/lib/css/_datepicker.css';
 //ReactDOM.render(<IndecisionApp defOptions={['One option','Two options','Three options']}/>, document.getElementById('app'));
 
 const store = configureStore();
-
+/*dummy data
 const expenseOne = store.dispatch(addExpense({description: 'Water bill', amount:117000, note:'Pay until day 5', createdAt:-1000}));
 const expenseTwo = store.dispatch(addExpense({description: 'rent', amount:109500, note:'pay until day 23', createdAt:1000}));
 const expenseThree = store.dispatch(addExpense({description: 'Gas bill', amount:400, note:'pay until day 23', createdAt:-1000}));
@@ -22,7 +22,7 @@ const expenseThree = store.dispatch(addExpense({description: 'Gas bill', amount:
 const state = store.getState(); 
 const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
 console.log( visibleExpenses);
-
+*/
 
 const jsx = (
     <Provider store={store}>
