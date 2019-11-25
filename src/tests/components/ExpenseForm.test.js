@@ -63,7 +63,7 @@ test('should set amount with valid input , onAmountChange',() =>{
 
 
 
-test('should set amount with valid input , onAmountChange',() =>{
+test('should set amount with invalid input , onAmountChange',() =>{
     const wrapper = shallow(<ExpenseForm/>);
     const value = '23.122';
     wrapper.find('input').at(1).simulate('change',
