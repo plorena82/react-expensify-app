@@ -3,6 +3,8 @@ git init - Create a new git repo
 git status - View the changes to your project code
 git add -Add files to the staging area
 git commit - Creates a new commit in repo with files from staging area
+git commit -m "INSERT MESSAGE HERE" (when I made the add before, new files generally)
+git commit -a -m "INSERT MSG HERE" (When I modified existing files, and no add new ones)
 git log - View recent commits
 git push - send the committed changes to our github REmote 
 
