@@ -5,6 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports= (env) => {
     const isProduction = env== 'production';
+    //with the CSS extract we are removing the styles from the bundle.js file
     const CSSExtract = new ExtractTextPlugin('styles.css');
     console.log(isProduction +'  '+ env);
     return {
