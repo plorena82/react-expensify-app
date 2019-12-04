@@ -51,3 +51,28 @@ type: 'EDIT_EXPENSE',
 id, 
 updates    
 });
+
+
+//SET_EXPENSES for setting into the store
+export const setExpenses = (expenses) =>( {
+    type:'SET_EXPENSES',
+    expenses
+});
+
+// action use to fetch the expenses from firebase and performs dispatch of the SetExpenses action obj
+export const startSetExpenses = () => {
+     return (dispatch) =>{
+
+        return database.ref('expenses').once('value').then((snapshot)=>{
+            const expenses =[];
+            snapshot.forEach((childSnap)=>{
+                expenses.push({
+                    id: childSnap.key,
+                    ...childSnap.val()
+                });
+            });
+            dispatch(setExpenses(expenses));
+        });
+     }   
+
+};

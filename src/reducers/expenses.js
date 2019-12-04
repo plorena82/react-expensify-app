@@ -24,6 +24,8 @@ export default (state = defaultExpenseReducerState, action) =>{
                     return expense;
                 }
             });
+        case 'SET_EXPENSES'://no matter the previous status, we return the expenses in action
+            return action.expenses;
         default:
             return state;
     }
