@@ -12,7 +12,7 @@ beforeEach(() => {
     history = {push:jest.fn()};
      wrapper = shallow(<EditExpensePage 
         editExpense={editExpenseSpy}
-         removeExpense={removeExpenseSpy}
+        startRemoveExpense={removeExpenseSpy}
           history={history}
           expense={expenses[1]} />);
 
