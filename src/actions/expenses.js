@@ -45,7 +45,7 @@ id
 });
 
 export const startRemoveExpense = ({id} ={}) =>{
-    return(dispatch) =>{
+    return (dispatch) =>{//I could have use database.ref(`expenses/${id}`).remove
         return database.ref(`expenses/${id}`).set(null).then(()=>{
             dispatch(removeExpense({id}));
         });
@@ -60,6 +60,13 @@ id,
 updates    
 });
 
+export const startEditExpense = (id, updates)=>{
+    return (dispatch) =>{
+        return database.ref(`expenses/${id}`).set(updates).then(()=>{
+            dispatch(editExpense(id, updates));
+        });
+    };
+};
 
 //SET_EXPENSES for setting into the store
 export const setExpenses = (expenses) =>( {

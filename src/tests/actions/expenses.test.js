@@ -1,9 +1,10 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import {addExpense, removeExpense, editExpense, startAddExpense, setExpenses, startSetExpenses, startRemoveExpense} from '../../actions/expenses';
+import {addExpense, removeExpense, editExpense, startAddExpense, setExpenses, startSetExpenses, startRemoveExpense,startEditExpense} from '../../actions/expenses';
 import expenses from '../fixtures/expenses';
 import database  from '../../firebase/firebase';
+import moment from 'moment';
 
 const createMockStore = configureMockStore([thunk]);
 
@@ -132,7 +133,7 @@ test('test should set expenses action object with provided values',()=>{
  });
 
  test('should remove expenses from firebase and store',(done)=>{
-    const store = createMockStore(expenses);
+    const store = createMockStore({});
     store.dispatch(startRemoveExpense({id:3})).then(()=>{
         const actions = store.getActions();
         expect(actions[0]).toEqual({
@@ -147,6 +148,25 @@ test('test should set expenses action object with provided values',()=>{
     });
  });
 
+ test('should edit expense from firebae and store',(done)=>{
+    const store = createMockStore({});
+    const id = expenses[2].id;
+    const updates= {description:'truck needed for construction, amount:35000'};
+    store.dispatch(startEditExpense(id, updates )).then(()=>{
+        const actions= store.getActions();
+        expect(actions[0]).toEqual({
+            type:'EDIT_EXPENSE',
+            id,
+            updates
+        });   
+        database.ref(`expenses/${id}`).once('value').then((snapshot)=>{
+            expect(snapshot.val().description).toBe('truck buy for construction');
+            expect(snapshot.val().amount).toBe(35000);
+            done();
+         });
+           
+    });
+ });
 /*
 test('test should set up an add expense object with empty values',()=>{
 
