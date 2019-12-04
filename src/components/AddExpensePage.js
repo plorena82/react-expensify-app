@@ -2,14 +2,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ExpenseForm from './ExpenseForm';
-import { addExpense} from '../actions/expenses.js';
+import { startAddExpense} from '../actions/expenses.js';
 
 
 export class  AddExpensePage extends React.Component{
     onSubmit= (expense)=>{
 
         //props.dispatch(addExpense(expense)); instead of doing dispatch here, we are doing in the mapDispatchToProps,, to have a clean onSubmit call for spy functions
-        this.props.addExpense(expense); 
+        this.props.startAddExpense(expense); 
         this.props.history.push('/'); // redirects to home
     };
 
@@ -42,7 +42,7 @@ const AddExpensePage = (props) => (
 //map the dispatch function to addExpense function attribute of a prop object
 const mapDispatchToProps = (dispatch)=> ({
     
-        addExpense: (expense)=> dispatch(addExpense(expense))
+    startAddExpense: (expense)=> dispatch(startAddExpense(expense))
     
 });
 
