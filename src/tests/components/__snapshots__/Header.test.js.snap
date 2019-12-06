@@ -33,5 +33,10 @@ exports[`should load the header component correctly 1`] = `
        Help
     </NavLink>
   </h3>
+  <button
+    onClick={[Function]}
+  >
+    Logout
+  </button>
 </header>
 `;
