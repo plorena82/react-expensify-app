@@ -8,6 +8,9 @@ import moment from 'moment';
 
 const createMockStore = configureMockStore([thunk]);
 
+const uid='thisismyuidfortest';
+const defaultAuthState = {auth:{uid}};
+
 
 
 beforeEach((done)=>{
@@ -16,7 +19,7 @@ beforeEach((done)=>{
         expensesData[id] = {description, note, createdAt, amount};
 
     });
-    database.ref('expenses').set(expensesData).then(()=>{done();});
+    database.ref(`users/${uid}/expenses`).set(expensesData).then(()=>{done();});
 });
 
 
@@ -53,7 +56,7 @@ test('test should set up an add expense object with provided values',()=>{
 
 //THIS IS AN ASYNC test, need to inform Jest about this using done()
 test('should add expense in firebase db and store ',(done)=>{
-    const store = createMockStore({});
+    const store = createMockStore(defaultAuthState);
     const expenseData= {
         description:'Mouse',
         amount:3500,
@@ -72,7 +75,7 @@ test('should add expense in firebase db and store ',(done)=>{
         }
        });
        // validate in the next "then" the firebase database,  whether the expense was successfully added
-        database.ref(`expenses/${actions[0].expense.id}`).once('value').then((snapshot)=>{   //now validating firebase database 
+        database.ref(`users/${uid}/expenses/${actions[0].expense.id}`).once('value').then((snapshot)=>{   //now validating firebase database 
              expect(snapshot).toEqual(expenseData);
       
          });
@@ -83,7 +86,7 @@ test('should add expense in firebase db and store ',(done)=>{
 
 //THIS IS AN ASYNC test, need to inform Jest about this using done()
 test('should add expense with DEFAULTS in firebase db and store ',(done)=>{
-    const store = createMockStore({});
+    const store = createMockStore(defaultAuthState);
     const expenseDefault= {
         description:'',
         amount:0,
@@ -102,7 +105,7 @@ test('should add expense with DEFAULTS in firebase db and store ',(done)=>{
         }
        });
        // validate in the next "then" the firebase database,  whether the expense was successfully added
-        database.ref(`expenses/${actions[0].expense.id}`).once('value').then((snapshot)=>{   //now validating firebase database 
+        database.ref(`users/${uid}/expenses/${actions[0].expense.id}`).once('value').then((snapshot)=>{   //now validating firebase database 
              expect(snapshot).toEqual(expenseDefault);
       
          });
@@ -120,8 +123,8 @@ test('test should set expenses action object with provided values',()=>{
      });
  });
  
- test('should retrieve expenses from firebase',(done)=>{
-    const store = createMockStore({});
+ test('should retrieve expenses from firebase and store',(done)=>{
+    const store = createMockStore(defaultAuthState);
     store.dispatch(startSetExpenses()).then(()=>{
         const actions = store.getActions();
         expect(actions[0]).toEqual({
@@ -133,14 +136,14 @@ test('test should set expenses action object with provided values',()=>{
  });
 
  test('should remove expenses from firebase and store',(done)=>{
-    const store = createMockStore({});
+    const store = createMockStore(defaultAuthState);
     store.dispatch(startRemoveExpense({id:3})).then(()=>{
         const actions = store.getActions();
         expect(actions[0]).toEqual({
             type:'REMOVE_EXPENSE',
             id:3
            });
-           database.ref(`expenses/${actions[0].expense.id}`).once('value').then((snapshot)=>{   //now validating firebase database 
+           database.ref(`users/${uid}/expenses/${actions[0].expense.id}`).once('value').then((snapshot)=>{   //now validating firebase database 
             expect(snapshot.val()).toBeFalsy();
             done();
         });
@@ -149,7 +152,7 @@ test('test should set expenses action object with provided values',()=>{
  });
 
  test('should edit expense from firebae and store',(done)=>{
-    const store = createMockStore({});
+    const store = createMockStore(defaultAuthState);
     const id = expenses[2].id;
     const updates= {description:'truck needed for construction, amount:35000'};
     store.dispatch(startEditExpense(id, updates )).then(()=>{
@@ -159,7 +162,7 @@ test('test should set expenses action object with provided values',()=>{
             id,
             updates
         });   
-        database.ref(`expenses/${id}`).once('value').then((snapshot)=>{
+        database.ref(`users/${uid}/expenses/${id}`).once('value').then((snapshot)=>{
             expect(snapshot.val().description).toBe('truck buy for construction');
             expect(snapshot.val().amount).toBe(35000);
             done();
