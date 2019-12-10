@@ -1,0 +1,20 @@
+.page-header{
+
+    background:$light-grey;
+    padding:$lrg-size 0;
+    margin-bottom: $lrg-size;
+}
+
+.page-header__title{
+
+    font-weight: 300;
+    margin:0;
+    span{
+        font-weight: bold; //is the same as 700 = bold
+    }
+}
+
+.page-header__actions{
+    margin-top:$med-size;
+    
+}

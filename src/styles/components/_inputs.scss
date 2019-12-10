@@ -1,0 +1,21 @@
+//we can not use input selector because it would change the inputs used in third party libraries like datepicker.. 
+//so we use a class with a different name to customize our inputs
+.text-input{
+    border: 1px solid #cacccd;
+    height: 50px;
+    font-size:$font-size-large;
+    font-weight:300;
+    padding: $s-size;
+
+}
+
+//select dropdown style
+.select{
+    @extend .text-input; //this is part of the sass-lang, extending a class
+    //We can add more attributes/styles here
+}
+
+.text-area{
+    @extend .text-input;
+    height: 10rem;
+}

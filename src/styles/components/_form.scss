@@ -1,0 +1,11 @@
+.form{
+    display:flex;
+    flex-direction: column;
+    > *{ //selector of all children of form 
+        margin-bottom: $med-size;
+    }
+}
+.form__error{
+    margin: 0 0 $med-size 0; //only margin bottom
+    font-style: italic;
+}

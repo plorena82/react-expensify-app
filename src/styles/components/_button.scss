@@ -1,0 +1,22 @@
+
+.button{
+    background: $cool-blue;
+    color: white;
+    padding: $s-size;
+    font-size:$font-size-large;
+    font-weight: 300 ;
+    border:0;
+    display: inline-block; //to be sure the padding and margins take effect, like forcing
+    text-decoration: none;//remove underline from the text if it is a link
+    line-height: 1;//always text in 1 line 
+}
+
+
+//modifier will have all the button characteristics, but with the attributes detailed modified, in className="button button--link" 
+.button--link {
+    background: none;
+}
+
+.button--secondary{
+    background:$cool_grey;  
+}

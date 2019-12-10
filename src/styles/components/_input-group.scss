@@ -1,0 +1,20 @@
+.input-group{
+    display:flex;
+    flex-direction:column; //style in small screens we set direction column, like in mobile 
+    margin-bottom: $med-size;
+    //styles being applied in larger we add a media, when minimun width  
+    @media (min-width: $desktop-breakpoint){ //to test this enlarge and make browser window larger/smaller
+        flex-direction:row;
+        margin-bottom: $lrg-size;
+   
+    }
+}
+.input-group__item{ 
+   
+    margin-bottom: $s-size; //in small screens only want margin bottom
+    
+    @media (min-width: $desktop-breakpoint){ 
+       // margin-right: $s-size; in larger only want margin on the right, the others in 0 
+       margin:0 $s-size 0 0;
+    }
+}

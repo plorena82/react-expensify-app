@@ -1,0 +1,20 @@
+.header{
+    background:$dark-blue;
+
+}
+
+//this is used to have the button and title distributed correctly left & right respectively
+.header__content{
+    display:flex;
+    justify-content: space-between; //distribute all the space in left, between title and button
+    align-items: center;
+    padding: $s-size 0; //padding in top and botttom, 0 in right and left
+}
+
+.header__title{
+    color: white;
+    text-decoration: none;
+    h1{
+        margin:0;
+    }
+}

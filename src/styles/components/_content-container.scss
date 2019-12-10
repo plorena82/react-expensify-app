@@ -1,0 +1,6 @@
+//this style is used in header as container, we set the max width, and if the width is >80 rem then the margin on right left will be automatically distributed on both sides.
+.content-container {
+    margin:0 auto; //0 indicates no margin top bottom
+    max-width: 80rem;
+    padding: 0 $med-size; //0 indicates no padding top bottom
+}

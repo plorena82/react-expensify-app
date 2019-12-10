@@ -1,10 +1,17 @@
+//with this universal selector * we say with box-sizing= border box we want our input or elements to be with the height set in our styles, not the height set plus border plus padding, (example input)
+*{
+    box-sizing: border-box; 
+}
+
 html{
     font-size: 62.5%; 
 }
 body {
+    color: $dark-grey;
     font-family:  Helvetica, Arial, sans-serif;
     font-size: $med-size;
     background: white;
+    line-height: 1.6;//space between elements 
 }
 
 button{

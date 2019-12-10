@@ -1,0 +1,23 @@
+.box-layout{
+    align-items:center;
+    background: url('/images/bg.jpg');
+    background-size: cover;
+    display:flex;
+    justify-content: center;
+    height:100vh; //viewport height is percent of the graphic window (i.e. tablet, pc, phone)
+    width:100vw;
+}
+
+.box-layout__box{
+    background:fade-out($color: white, $amount: 0.15);
+    border-radius: 3px; //round borders of the box
+    padding: $lrg-size $med-size;
+    text-align: center;
+    width: 25rem;
+}
+
+
+.box-layout__title{
+    margin:0 0 $med-size 0;
+    line-height: 1;
+}
